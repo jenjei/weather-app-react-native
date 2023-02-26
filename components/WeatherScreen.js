@@ -4,8 +4,15 @@ import WeatherInfo from './WeatherInfo';
 import Header from './Header';
 
 const WeatherScreen = () => {
-  const [weatherData, setWeatherData] = useState([]);
+  const [weatherData, setWeatherData] = useState(
+    {"description": 'Rainy day',
+    "name": 'London',
+    "temperature": 10,
+    "weather": 'Rain',
+    "wind": 5}
+  );
 
+  /*
   const getWeatherData = () => {
       const response = fetch(
         'openweathermap.org'
@@ -13,23 +20,27 @@ const WeatherScreen = () => {
       const toJson = response.json();
       setWeatherData(toJson);
       console.log(weatherData);
-  };
+  }; */
 
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
       <View style={styles.headerStyle}>
-        <Header city={weatherData.name} />
+        <Header city={'current weather'} />
       </View>
 
       <View style={styles.weatherInfoStyle}>
-        <WeatherInfo />
+        <WeatherInfo
+        city={weatherData.name}
+        description={weatherData.description}
+        temperature={weatherData.temperature}
+        weather={weatherData.weather}
+        wind={weatherData.wind} />
       </View>
 
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button} onPress={getWeatherData}>
+        <Pressable style={styles.button} >
           <Text style={styles.buttonText}>show weather in your location</Text>
         </Pressable>
-
       </View>
     </View>
   );
@@ -41,7 +52,9 @@ const styles = StyleSheet.create({
   },
   headerStyle: {
     backgroundColor: 'lightblue',
-    height: '10%',
+    height: '12%',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
   },
   button: {
     alignItems: 'center',
@@ -50,7 +63,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: 'black',
+    backgroundColor: 'steelblue',
   },
   buttonText: {
     fontSize: 16,
@@ -63,8 +76,8 @@ const styles = StyleSheet.create({
     flex: 0.5,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'pink',
-  },
+    backgroundColor: 'aliceblue',
+  }
 });
 
 export default WeatherScreen;

@@ -1,29 +1,49 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { weatherConditions } from './utils/WeatherConditions';
 
-const WeatherInfo = ({ description, temperature, wind, icon}) => {
+const WeatherInfo = ({ description, temperature, wind, city, weather}) => {
   
+
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
-      <View style={styles.iconStyle}>{description}</View>
-      
+      <View style={styles.iconStyle}>
+        <Text style={styles.cityTextStyle}>{city}</Text>
+      </View>
+
       <View style={styles.rowColumnStyle}>
-        <View style={styles.firstContainer}></View>
+        <View style={styles.iconContainer}>
+        <MaterialCommunityIcons
+          size={72}
+          name={weatherConditions[weather].icon}
+          color={'#fff'}
+        />
+        </View>
 
         <View style={styles.secondContainer}>
-          <Text style={styles.tempTextStyle}>{temperature}C</Text>
+          <Text style={styles.tempTextStyle}>{temperature}°C</Text>
           <Text style={styles.windTextStyle}>{wind} m/s</Text>
         </View>
       </View>
+
+      <View style={styles.iconStyle}>
+        <Text style={styles.descriptionText}>{description}</Text>
+      </View>
+
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  icon: {
+    width: 55,
+  },
   iconStyle: {
     flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center'
+    backgroundColor: 'snow',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   rowColumnStyle: {
     flex: 4,
@@ -31,22 +51,35 @@ const styles = StyleSheet.create({
   },
   windTextStyle: {
     flex: 1,
+    padding: 50,
     fontSize: 25,
-    backgroundColor: 'yellow'
+    backgroundColor: 'powderblue'
   },
   tempTextStyle: {
     flex: 1,
+    padding: 50,
     fontSize: 25,
-    backgroundColor: 'orange'
+    backgroundColor: 'lightcyan'
   },
-  firstContainer: {
+  descriptionText: {
+    fontSize: 20
+  },
+  iconContainer: {
     flex: 1,
-    backgroundColor: 'lightgreen'
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'lightskyblue'
   },
   secondContainer: {
     flex: 1,
-    backgroundColor: 'orange'
-  }
+    backgroundColor: 'darkturquoise'
+  },
+  cityTextStyle: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'center'
+  },
 })
 
 export default WeatherInfo;

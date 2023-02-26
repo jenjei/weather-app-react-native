@@ -15,7 +15,7 @@ const App = () => {
       <Tab.Navigator
         initialRouteName="WEATHER NOW"
         activeColor="white"
-        inactiveColor="#3e2465"
+        inactiveColor="black"
         barStyle={{ backgroundColor: 'lightblue' }}>
         <Tab.Screen
           name="WEATHER NOW"

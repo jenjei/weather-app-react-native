@@ -3,7 +3,7 @@ import Header from './Header';
 
 const Settings = () => {
   return (
-    <View>
+    <View style={{flex: 1}}>
       <View style={styles.headerStyle}>
         <Header city={'settings'}></Header>
       </View>
@@ -15,7 +15,9 @@ const Settings = () => {
 const styles = StyleSheet.create({
   headerStyle: {
     backgroundColor: 'lightblue',
-    height: '10%',
+    height: '12%',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
   },
 });
 

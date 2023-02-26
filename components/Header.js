@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
   cityTextStyle: {
     fontSize: 30,
     color: 'black',
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: '2%'
   },
   headerStyle: {
     backgroundColor: 'lightblue'
