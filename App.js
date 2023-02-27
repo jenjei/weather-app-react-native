@@ -1,5 +1,4 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { Text, View, StyleSheet, Pressable } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons'; 

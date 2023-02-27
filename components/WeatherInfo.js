@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { weatherConditions } from './utils/WeatherConditions';
 
 const WeatherInfo = ({ description, temperature, wind, city, weather}) => {
-  
+  console.log(weather)
 
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>

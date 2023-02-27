@@ -1,28 +1,34 @@
 import { View, Text, Pressable, StyleSheet, FlatList } from 'react-native';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import Header from './Header';
 import WeatherListItem from './WeatherListItem';
 
 const ForecastScreen = () => {
   const [forecast, setForecast] = useState([]);
+  let lat = 0
+  let lon = 0
+  let city 
 
   const getForecastData = () => {
-    const response = fetch(
-      'openweathermap.org'
-    );
-    const toJson = response.json();
-    setForecast(toJson);
-    console.log(forecast);
-};
+    setTimeout(() => {
+      console.log('renders every 1 sec')
+      axios.get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=London&appid=81d2212fe4134d321cc7dd779b2704fb`
+      ).then(response => {
+        console.log(response.data.city.name)
+        setForecast(response.data)
+        console.log('updated forecast data', forecast);
+        city=(response.data.city.name);
+        console.log(city)
+      });
+    }, 1000);
 
-/* THIS USEEFFECT FETCHES 10K TIMES IN A MINUTE FOR SOME REASON...?
-  useEffect(() => {
-        const response = fetch(
-          'openweathermap.org'
-        );
-        const toJson = response.json();
-        setForecast(toJson);
-  }, []); */
+    setTimeout(() => {
+      console.log(forecast)
+      city=forecast.city
+    }, 2000);
+  };
 
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
@@ -30,7 +36,7 @@ const ForecastScreen = () => {
         <Header city={'weather forecast'}></Header>
       </View>
       <View style={styles.iconStyle}>
-        <Text style={styles.cityTextStyle}>London</Text>
+        <Text style={styles.cityTextStyle}>{city? city : 'Tampere' }</Text>
       </View>
 
       <View style={styles.listContainer}>
@@ -42,7 +48,7 @@ const ForecastScreen = () => {
               time={item.dt_txt}
               description={item.weather[0].description}
               temperature={item.main.temp}
-              icon={chooseIcon(item.weather[0].description)}
+              icon={item.weather[0].main}
             />
           )}></FlatList>
       </View>

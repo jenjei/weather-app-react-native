@@ -49,5 +49,8 @@ export const weatherConditions = {
       title: 'Mist',
       subtitle: "Don't roam in forests!",
       icon: 'weather-fog'
+    },
+    Fog: {
+      icon: 'weather-fog'
     }
   };
