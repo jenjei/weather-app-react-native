@@ -17,7 +17,6 @@
 
 ## Quick UI design sketch
 
-<img src='./assets/ui-sketch-weather' width="500"></img>
-
+![](assets/ui-sketch-weather-app.png)
 
 ## Final result
