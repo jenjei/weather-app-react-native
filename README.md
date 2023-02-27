@@ -21,9 +21,10 @@
 
 ## Final result
 
-![](assets/current-weather.jpg)
+<img src='/assets/current-weather.jpg' height='200' ></img>
 
-![](assets/forecast-screen.jpg)
+<img src='/assets/forecast-screen.jpg' height='200' ></img>
+
 
 ## Further development
 
