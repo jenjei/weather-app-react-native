@@ -1,28 +1,58 @@
 import { View, Text, Pressable, StyleSheet, FlatList } from 'react-native';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import * as Location from 'expo-location';
 import axios from 'axios';
 import Header from './Header';
 import WeatherListItem from './WeatherListItem';
 
 const ForecastScreen = () => {
   const [forecast, setForecast] = useState([]);
-  let lat = 0
-  let lon = 0
-  let city 
+  const [locationGPS, setLocationGPS] = useState({ lat: 0, lon: 0 });
+  const apikey = 'your api key here';
+  let city = 'Tampere';
+  
+  const checkAndRequestPermission = async () => {
+    if (Platform.OS === 'android' && !Device.isDevice) {
+      setErrorMsg(
+        'Oops, this will not work on Android. Try it on your iOS device!'
+      );
+      return;
+    }
+
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      setErrorMsg('Permission to GPS location was denied :( ');
+      return;
+    }
+
+    setTimeout(async() => {
+      let location = await Location.getCurrentPositionAsync({});
+      console.log('row 30', location);
+
+      let gps = JSON.stringify(location);
+      console.log(gps);
+
+      setLocationGPS({
+      lat: location.coords.latitude,
+      lon: location.coords.longitude,
+    });
+    }, 1000);
+    console.log('lat: ', locationGPS.lat, 'lon: ', locationGPS.lon);
+  };
 
   const getForecastData = () => {
+    checkAndRequestPermission();
+
     setTimeout(() => {
-      console.log('renders every 1 sec')
+      console.log('forecast renders every 2 sec')
       axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=London&appid=81d2212fe4134d321cc7dd779b2704fb`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${locationGPS.lat}&lon=${locationGPS.lon}&appid=${apikey}`
       ).then(response => {
         console.log(response.data.city.name)
         setForecast(response.data)
         console.log('updated forecast data', forecast);
-        city=(response.data.city.name);
-        console.log(city)
       });
-    }, 1000);
+    }, 2000);
 
     setTimeout(() => {
       console.log(forecast)
@@ -53,7 +83,7 @@ const ForecastScreen = () => {
           )}></FlatList>
       </View>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button} onPress={getForecastData}>
+        <Pressable style={styles.button} onPress={getForecastData()}>
           <Text style={styles.buttonText}>show forecast in your location</Text>
         </Pressable>
       </View>

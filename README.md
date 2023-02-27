@@ -20,3 +20,17 @@
 ![](assets/ui-sketch-weather-app.png)
 
 ## Final result
+
+![](assets/current-weather.jpg)
+
+![](assets/forecast-screen.jpg)
+
+## Further development
+
+- Settings: Fahrenheit, Celsius
+- Developing layout more professional (colors -> get rid of those "color codes", styling buttons etc)
+- Current Weather: "show weather in your location" button would fetch weather data via gps if user allows (same way like forecast)
+- Separate StyleSheets from components
+- Make this app more Android friendly
+- Error handling
+- Implement some sort of testing

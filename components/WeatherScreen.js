@@ -5,6 +5,7 @@ import WeatherInfo from './WeatherInfo';
 import Header from './Header';
 
 const WeatherScreen = () => {
+  const apikey = 'your api key here';
   const [weatherData, setWeatherData] = useState(
     {"description": 'Rainy day',
     "name": 'London',
@@ -15,9 +16,9 @@ const WeatherScreen = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log('renders every 1 sec')
+      console.log('weather renders every 1 sec')
       axios.get(
-        'https://api.openweathermap.org/data/2.5/weather?q=Tampere&appid={apikey}'
+        `https://api.openweathermap.org/data/2.5/weather?q=Tampere&units=metric&appid=${apikey}`
       ).then(response => {
         console.log(response.data)
         setWeatherData(
