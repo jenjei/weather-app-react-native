@@ -21,9 +21,9 @@
 
 ## Final result
 
-<img src='/assets/current-weather.jpg' height='200' ></img>
+<img src='/assets/current-weather.jpg' height='400' ></img>
 
-<img src='/assets/forecast-screen.jpg' height='200' ></img>
+<img src='/assets/forecast-screen.jpg' height='400' ></img>
 
 
 ## Further development
